@@ -1,0 +1,21 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def moving_avg(x, n):
+ cumsum = np.cumsum(np.insert(x, 0, 0)) 
+ return (cumsum[n:] - cumsum[:-n]) / float(n)
+
+with open(r"E:\лабы питон\signal03.dat") as datFile:
+    d1 = [data.split() for data in datFile]
+    
+n = len(d1)
+
+for i in range(n):
+    d1[i]=float(d1[i][0])
+
+plt.figure(figsize = (30,15))
+plt.tick_params(axis='both', which='major', labelsize=50)
+plt.plot(moving_avg(d1, 10))
+plt.xlabel("some numbers",fontsize=50)
+plt.ylabel("some numbers",fontsize=50)
+plt.title("signal03.dat",fontsize = 60)
