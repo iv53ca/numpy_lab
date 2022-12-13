@@ -1,0 +1,14 @@
+import numpy as np
+from PIL import Image
+
+# считаем картинку в numpy array
+img = Image.open("E:\лабы питон\lunar_images\lunar03_raw.jpg")
+data = np.array(img)
+n = data.max() - data.min()
+d = 255/n
+updated_data = data.copy()
+for i in range(len(data)):
+    for j in range(len(data[1])):
+        data[i][j]=d*(data[i][j]-155)
+res_img = Image.fromarray(data)
+res_img.save('lunar03_processed.png',"JPEG")
